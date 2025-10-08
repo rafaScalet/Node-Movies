@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    // Build Options (How the code will be transpiled and interpreted)
+    "target": "es2022",
+    "module": "esNext",
+    "skipLibCheck": true,
+
+    // Bundler Options (Options to use tsc only for typecheck and made better for bundlers like vite and tsup)
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    // Typecheck Options (all the rules for typescript)
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": false,
+
+    // Paths to make imports pretty
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
