@@ -3,7 +3,13 @@ import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fastifyCors } from "@fastify/cors";
 import { fastifySwagger } from "@fastify/swagger";
-import { validatorCompiler, serializerCompiler, jsonSchemaTransform, jsonSchemaTransformObject } from "fastify-type-provider-zod";
+import {
+  validatorCompiler,
+  serializerCompiler,
+  jsonSchemaTransform,
+  jsonSchemaTransformObject
+} from "fastify-type-provider-zod";
+import fastifyScalarUI from '@scalar/fastify-api-reference';
 
 const dev = process.env.NODE_ENV !== "production";
 
@@ -35,10 +41,11 @@ await app.register(fastifySwagger, {
       description: "Find more info here",
     },
   },
-  transform: jsonSchemaTransform, 
+  transform: jsonSchemaTransform,
   transformObject: jsonSchemaTransformObject,
 });
 
+await app.register(fastifyScalarUI, { routePrefix: '/docs' });
 await app.ready();
 
 if (dev) {
