@@ -3,12 +3,23 @@ import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fastifyCors } from "@fastify/cors";
 import { fastifySwagger } from "@fastify/swagger";
+import {
+  validatorCompiler,
+  serializerCompiler,
+  jsonSchemaTransform,
+  jsonSchemaTransformObject,
+  ZodTypeProvider
+} from "fastify-type-provider-zod";
+import fastifyScalarUI from '@scalar/fastify-api-reference';
 
 const dev = process.env.NODE_ENV !== "production";
 
 const app = fastify({
   logger: dev ? { transport: { target: "pino-pretty" } } : true,
-});
+}).withTypeProvider<ZodTypeProvider>();
+
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
 
 await app.register(fastifyCors, { origin: "*" });
 
@@ -31,7 +42,11 @@ await app.register(fastifySwagger, {
       description: "Find more info here",
     },
   },
+  transform: jsonSchemaTransform,
+  transformObject: jsonSchemaTransformObject,
 });
+
+await app.register(fastifyScalarUI, { routePrefix: '/docs' });
 
 await app.ready();
 
