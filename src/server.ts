@@ -47,6 +47,7 @@ await app.register(fastifySwagger, {
 });
 
 await app.register(fastifyScalarUI, { routePrefix: '/docs' });
+
 await app.ready();
 
 if (dev) {
