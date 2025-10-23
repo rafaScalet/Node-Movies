@@ -7,7 +7,8 @@ import {
   validatorCompiler,
   serializerCompiler,
   jsonSchemaTransform,
-  jsonSchemaTransformObject
+  jsonSchemaTransformObject,
+  ZodTypeProvider
 } from "fastify-type-provider-zod";
 import fastifyScalarUI from '@scalar/fastify-api-reference';
 
@@ -15,7 +16,7 @@ const dev = process.env.NODE_ENV !== "production";
 
 const app = fastify({
   logger: dev ? { transport: { target: "pino-pretty" } } : true,
-});
+}).withTypeProvider<ZodTypeProvider>();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);

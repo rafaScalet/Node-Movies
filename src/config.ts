@@ -3,12 +3,12 @@ import type {
   FastifyInstance,
   RawReplyDefaultExpression,
   RawRequestDefaultExpression,
-  RawServerBase,
+  RawServerDefault,
 } from 'fastify';
 import type { ZodTypeProvider } from 'fastify-type-provider-zod';
 
 export type FastifyTypedInstance = FastifyInstance<
-  RawServerBase,
+  RawServerDefault,
   RawRequestDefaultExpression,
   RawReplyDefaultExpression,
   FastifyBaseLogger,
