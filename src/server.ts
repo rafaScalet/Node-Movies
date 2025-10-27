@@ -1,3 +1,5 @@
+import { env } from "./env";
+
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -8,11 +10,13 @@ import {
   serializerCompiler,
   jsonSchemaTransform,
   jsonSchemaTransformObject,
-  ZodTypeProvider
+  ZodTypeProvider,
 } from "fastify-type-provider-zod";
-import fastifyScalarUI from '@scalar/fastify-api-reference';
+import fastifyScalarUI from "@scalar/fastify-api-reference";
 
-const dev = process.env.NODE_ENV !== "production";
+const { PORT, NODE_ENV, HOST } = env;
+
+const dev = NODE_ENV !== "production";
 
 const app = fastify({
   logger: dev ? { transport: { target: "pino-pretty" } } : true,
@@ -46,7 +50,7 @@ await app.register(fastifySwagger, {
   transformObject: jsonSchemaTransformObject,
 });
 
-await app.register(fastifyScalarUI, { routePrefix: '/docs' });
+await app.register(fastifyScalarUI, { routePrefix: "/docs" });
 
 await app.ready();
 
@@ -59,7 +63,7 @@ if (dev) {
   });
 }
 
-app.listen({ port: 3333, host: "0.0.0.0" }, (err) => {
+app.listen({ port: PORT, host: HOST }, (err) => {
   console.clear();
 
   if (err) {
