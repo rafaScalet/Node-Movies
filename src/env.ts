@@ -10,8 +10,8 @@ const envSchema = z.object({
     .default(["*"]),
 })
 
-const _env = envSchema.parse(process.env)
+const env = envSchema.parse(process.env)
 
-export const { NODE_ENV, APP_PORT, APP_HOST, CORS_ORIGIN } = _env
+export const { NODE_ENV, APP_PORT, APP_HOST, CORS_ORIGIN } = env
 
-export default _env
+export default env
