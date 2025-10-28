@@ -1,5 +1,4 @@
-import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "./env";
-
+import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "@/env";
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -14,7 +13,7 @@ import {
 } from "fastify-type-provider-zod";
 import fastifyScalarUI from "@scalar/fastify-api-reference";
 
-const dev = NODE_ENV !== "production";
+const dev = NODE_ENV === "develop";
 
 const app = fastify({
   logger: dev ? { transport: { target: "pino-pretty" } } : true,
