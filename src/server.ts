@@ -1,4 +1,4 @@
-import { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "./env";
+import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "./env";
 
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
@@ -66,8 +66,11 @@ const host = APP_HOST;
 
 app.listen({ port, host }, (err) => {
   console.clear();
-  console.log(`${port}, ${host}`)
+
   if (err) {
     app.log.error(err);
+    process.exit(1);
   }
+
+  app.log.info({ env }, "HTTP Server Running");
 });
