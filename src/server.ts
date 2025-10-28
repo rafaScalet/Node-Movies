@@ -1,3 +1,5 @@
+import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "./env";
+
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -8,11 +10,11 @@ import {
   serializerCompiler,
   jsonSchemaTransform,
   jsonSchemaTransformObject,
-  ZodTypeProvider
+  ZodTypeProvider,
 } from "fastify-type-provider-zod";
-import fastifyScalarUI from '@scalar/fastify-api-reference';
+import fastifyScalarUI from "@scalar/fastify-api-reference";
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = NODE_ENV !== "production";
 
 const app = fastify({
   logger: dev ? { transport: { target: "pino-pretty" } } : true,
@@ -21,7 +23,7 @@ const app = fastify({
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-await app.register(fastifyCors, { origin: "*" });
+await app.register(fastifyCors, { origin: CORS_ORIGIN });
 
 await app.register(fastifySwagger, {
   openapi: {
@@ -46,7 +48,7 @@ await app.register(fastifySwagger, {
   transformObject: jsonSchemaTransformObject,
 });
 
-await app.register(fastifyScalarUI, { routePrefix: '/docs' });
+await app.register(fastifyScalarUI, { routePrefix: "/docs" });
 
 await app.ready();
 
@@ -59,10 +61,16 @@ if (dev) {
   });
 }
 
-app.listen({ port: 3333, host: "0.0.0.0" }, (err) => {
+const port = APP_PORT;
+const host = APP_HOST;
+
+app.listen({ port, host }, (err) => {
   console.clear();
 
   if (err) {
     app.log.error(err);
+    process.exit(1);
   }
+
+  app.log.info({ env }, "HTTP Server Running");
 });
