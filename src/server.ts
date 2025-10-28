@@ -1,4 +1,4 @@
-import { env } from "./env";
+import { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "./env";
 
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
@@ -14,8 +14,6 @@ import {
 } from "fastify-type-provider-zod";
 import fastifyScalarUI from "@scalar/fastify-api-reference";
 
-const { PORT, NODE_ENV, HOST } = env;
-
 const dev = NODE_ENV !== "production";
 
 const app = fastify({
@@ -25,7 +23,7 @@ const app = fastify({
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-await app.register(fastifyCors, { origin: "*" });
+await app.register(fastifyCors, { origin: CORS_ORIGIN });
 
 await app.register(fastifySwagger, {
   openapi: {
@@ -63,9 +61,12 @@ if (dev) {
   });
 }
 
-app.listen({ port: PORT, host: HOST }, (err) => {
-  console.clear();
+const port = APP_PORT;
+const host = APP_HOST;
 
+app.listen({ port, host }, (err) => {
+  console.clear();
+  console.log(`${port}, ${host}`)
   if (err) {
     app.log.error(err);
   }

@@ -1,19 +1,12 @@
-import "dotenv/config"
 import { z } from "zod"
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["dev", "test", "production"]).default("dev"),
-  PORT: z.coerce.number().default(3333),
-  HOST: z.string().default("0.0.0.0"),
-  DATABASE_URL: z.string(),
-  JWT_SECRET: z.string().min(1),
+  APP_PORT: z.coerce.number().default(3333),
+  APP_HOST: z.string().default("0.0.0.0"),
+  CORS_ORIGIN: z.string().default("*"),
 })
 
-const _env = envSchema.safeParse(process.env)
+const _env = envSchema.parse(process.env)
 
-if (_env.success === false) {
-  console.error("Invalid enviroment variables: ", _env.error.format())
-  throw new Error("Invalid enviroment variables.")
-}
-
-export const env = _env.data
+export const { NODE_ENV, APP_PORT, APP_HOST, CORS_ORIGIN } = _env

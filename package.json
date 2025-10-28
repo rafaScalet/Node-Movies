@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
-    "dev": "tsx watch src/server.ts",
-    "start": "node ."
+    "dev": "tsx watch --env-file=.env src/server.ts",
+    "start": "node --env-file=.env ."
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,6 @@
     "@fastify/cors": "^11.1.0",
     "@fastify/swagger": "^9.5.2",
     "@scalar/fastify-api-reference": "^1.37.0",
-    "dotenv": "^17.2.3",
     "fastify": "^5.6.1",
     "fastify-type-provider-zod": "^6.0.0",
     "zod": "^4.1.12"
