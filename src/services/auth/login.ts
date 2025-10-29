@@ -39,8 +39,7 @@ export async function login(req: FastifyRequest<{ Body: UserRequest }>, res: Fas
   const token = req.server.jwt.sign({ name, email })
 
   return res.code(200).send({
-    token,
-    error: "Ok",
+    value: {token},
     message: "Authorized",
     statusCode: 200,
   });
