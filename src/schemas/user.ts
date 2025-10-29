@@ -11,6 +11,12 @@ export const UserRequestSchema = UserSchema.omit({ id: true });
 
 export const UserResponseSchema = UserSchema.omit({ password: true });
 
+export type User = z.infer<typeof UserSchema>;
+
+export type UserRequest = z.infer<typeof UserRequestSchema>;
+
+export type UserResponse = z.infer<typeof UserResponseSchema>;
+
 z.globalRegistry.add(UserSchema, {
   id: "User",
   title: "User Schema",

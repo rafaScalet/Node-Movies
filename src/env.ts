@@ -8,10 +8,11 @@ const envSchema = z.object({
     .string()
     .transform((data) => data.split(","))
     .default(["*"]),
+  JWT_SECRET: z.string().default("jwt-secret"),
 })
 
 const env = envSchema.parse(process.env)
 
-export const { NODE_ENV, APP_PORT, APP_HOST, CORS_ORIGIN } = env
+export const { NODE_ENV, APP_PORT, APP_HOST, CORS_ORIGIN, JWT_SECRET } = env
 
 export default env
