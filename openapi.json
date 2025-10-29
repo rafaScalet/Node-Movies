@@ -6,16 +6,437 @@
     "version": "1.0.0"
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "ResponseInput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "minimum": 200,
+            "maximum": 505
+          },
+          "message": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "error",
+          "value"
+        ],
+        "title": "Response Schema",
+        "description": "Response Related Schema"
+      },
+      "OkResponseInput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "minimum": 200,
+            "maximum": 505
+          },
+          "message": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "value"
+        ],
+        "title": "Ok Response Schema",
+        "description": "Ok Related Schema"
+      },
+      "ErrorResponseInput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "minimum": 200,
+            "maximum": 505
+          },
+          "message": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "error"
+        ],
+        "title": "Error Response Schema",
+        "description": "Error Related Schema"
+      },
+      "UserInput": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "password"
+        ],
+        "title": "User Schema",
+        "description": "User Related Schema"
+      },
+      "UserRequestInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "title": "User Request Schema",
+        "description": "Schema to pass a User in the \"body\" field"
+      },
+      "UserResponseInput": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "title": "User Response Schema",
+        "description": "Schema to use in the response field"
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "minimum": 200,
+            "maximum": 505
+          },
+          "message": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "error",
+          "value"
+        ],
+        "additionalProperties": false,
+        "title": "Response Schema",
+        "description": "Response Related Schema"
+      },
+      "OkResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "minimum": 200,
+            "maximum": 505
+          },
+          "message": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "value"
+        ],
+        "additionalProperties": false,
+        "title": "Ok Response Schema",
+        "description": "Ok Related Schema"
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number",
+            "minimum": 200,
+            "maximum": 505
+          },
+          "message": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "error"
+        ],
+        "additionalProperties": false,
+        "title": "Error Response Schema",
+        "description": "Error Related Schema"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "password"
+        ],
+        "additionalProperties": false,
+        "title": "User Schema",
+        "description": "User Related Schema"
+      },
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "additionalProperties": false,
+        "title": "User Request Schema",
+        "description": "Schema to pass a User in the \"body\" field"
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "additionalProperties": false,
+        "title": "User Response Schema",
+        "description": "Schema to use in the response field"
+      }
+    }
   },
-  "paths": {},
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 8
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Ok Response Schema",
+                  "description": "Authorized",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OkResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error Response Schema",
+                  "description": "Unauthorized",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error Response Schema",
+                  "description": "Not Found",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "servers": [
     {
       "url": "http://localhost:3333",
       "description": "Development Server"
     }
   ],
-  "tags": [],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Authentication related end-points"
+    }
+  ],
   "externalDocs": {
     "url": "https://swagger.io",
     "description": "Find more info here"
