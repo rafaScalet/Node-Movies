@@ -14,11 +14,10 @@ const users: Array<User> = [
     email: "banana@gmail.com",
     password: "labubu123"
   }
-
-]
+];
 
 export async function login(req: FastifyRequest<{ Body: UserRequest }>, res: FastifyReply) {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
   const user = users.find((data) => data.email === email);
 
   if (!user) {
@@ -37,7 +36,10 @@ export async function login(req: FastifyRequest<{ Body: UserRequest }>, res: Fas
     });
   }
 
+  const token = req.server.jwt.sign({ name, email })
+
   return res.code(200).send({
+    token,
     error: "Ok",
     message: "Authorized",
     statusCode: 200,

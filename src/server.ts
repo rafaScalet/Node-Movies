@@ -1,9 +1,10 @@
-import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN } from "@/env";
+import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN, JWT_SECRET } from "@/env";
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fastifyCors } from "@fastify/cors";
 import { fastifySwagger } from "@fastify/swagger";
+import jwt from "@fastify/jwt";
 import {
   validatorCompiler,
   serializerCompiler,
@@ -23,6 +24,8 @@ app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 await app.register(fastifyCors, { origin: CORS_ORIGIN });
+
+await app.register(jwt, { secret: JWT_SECRET });
 
 await app.register(fastifySwagger, {
   openapi: {

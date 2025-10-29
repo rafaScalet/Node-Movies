@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsx watch --env-file=.env src/server.ts",
-    "start": "node --env-file=.env ."
+    "start": "node --env-file=.env .",
+    "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')" 
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^11.1.0",
+    "@fastify/jwt": "^10.0.0",
     "@fastify/swagger": "^9.5.2",
     "@scalar/fastify-api-reference": "^1.37.0",
     "fastify": "^5.6.1",
