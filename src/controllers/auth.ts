@@ -2,6 +2,7 @@ import { FastifyTypedInstance } from "@/config"
 import { ErrorResponseSchema, OkResponseSchema } from "@/schemas/response"
 import { UserRequestSchema } from "@/schemas/user"
 import { signIn } from "@/services/auth/sign-in"
+import { singUp } from "@/services/auth/sign-up"
 
 export function AuthController(app: FastifyTypedInstance) {
   app.post(
@@ -19,4 +20,20 @@ export function AuthController(app: FastifyTypedInstance) {
     },
     signIn
   )
+
+  app.post(
+    "/signUp",
+    { 
+      schema: {
+        body: UserRequestSchema, 
+        tags: ["auth"],
+        response: {
+          201: OkResponseSchema.describe("Created"),
+          409: ErrorResponseSchema.describe("Conflict"),
+        },
+      },
+    },
+    singUp
+  )
+
 }
