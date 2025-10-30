@@ -1,5 +1,5 @@
 import { FastifyTypedInstance } from "@/config";
-import { ErrorResponseSchema, OkResponseSchema} from "@/schemas/response";
+import { ErrorResponseSchema, OkResponseSchema } from "@/schemas/response";
 import { UserRequestSchema } from "@/schemas/user";
 import { login } from "@/services/auth/login";
 

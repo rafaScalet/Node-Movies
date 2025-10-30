@@ -1,15 +1,15 @@
 import z from "zod";
 
 export const ResponseSchema = z.object({
-    statusCode: z.number().min(200).max(505),
-    message: z.string(),
-    error: z.string(),
-    value: z.object({token: z.string().optional()})
+  statusCode: z.number().min(200).max(505),
+  message: z.string(),
+  error: z.string(),
+  value: z.object({ token: z.string().optional() })
 })
 
-export const OkResponseSchema = ResponseSchema.omit({error: true});
+export const OkResponseSchema = ResponseSchema.omit({ error: true });
 
-export const ErrorResponseSchema = ResponseSchema.omit({value: true});
+export const ErrorResponseSchema = ResponseSchema.omit({ value: true });
 
 export type AuthResponse = z.infer<typeof ResponseSchema>;
 
