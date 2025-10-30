@@ -37,7 +37,7 @@ const movies: Array<Movie> = [
   },
 ]
 
-export async function postMovie(req: FastifyRequest<{ Body: MovieRequest }>, res: FastifyReply) {
+export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: FastifyReply) {
   const { title, description, genres, year, duration, age, poster, link } = req.body;
   const id = movies.length + 1;
 

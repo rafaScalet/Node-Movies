@@ -36,6 +36,6 @@ const movies: Array<Movie> = [
   },
 ]
 
-export async function getMovies() {
+export async function list() {
   return movies;
 }
