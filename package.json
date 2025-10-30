@@ -8,9 +8,11 @@
     "build": "tsup",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx --env-file .env ./src/db/seed.ts",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
-    "start": "node --env-file=.env ."
+    "start": "node --env-file=.env .",
+    "typecheck": "tsc -b"
   },
   "repository": {
     "type": "git",
@@ -41,6 +43,7 @@
     "@libsql/client": "^0.15.15",
     "@scalar/fastify-api-reference": "^1.37.0",
     "drizzle-orm": "^0.44.7",
+    "drizzle-seed": "^0.3.1",
     "fastify": "^5.6.1",
     "fastify-type-provider-zod": "^6.0.0",
     "zod": "^4.1.12"
