@@ -35,7 +35,7 @@ await app.register(fastifySwagger, {
       description: "The Backend for Node Movies application",
       version: "1.0.0",
     },
-    tags: [{name: "auth", description: "Authentication related end-points"}],
+    tags: [{ name: "auth", description: "Authentication related end-points" }],
     servers: [
       {
         url: "http://localhost:3333",
@@ -51,7 +51,7 @@ await app.register(fastifySwagger, {
   transformObject: jsonSchemaTransformObject,
 });
 
-await app.register(AuthController)
+await app.register(AuthController);
 
 await app.register(fastifyScalarUI, { routePrefix: "/docs" });
 
