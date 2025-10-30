@@ -109,13 +109,21 @@
           "password": {
             "type": "string",
             "minLength": 8
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
           }
         },
         "required": [
           "id",
           "name",
           "email",
-          "password"
+          "password",
+          "role"
         ],
         "title": "User Schema",
         "description": "User Related Schema"
@@ -134,12 +142,20 @@
           "password": {
             "type": "string",
             "minLength": 8
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
           }
         },
         "required": [
           "name",
           "email",
-          "password"
+          "password",
+          "role"
         ],
         "title": "User Request Schema",
         "description": "Schema to pass a User in the \"body\" field"
@@ -159,12 +175,20 @@
             "type": "string",
             "format": "email",
             "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
           }
         },
         "required": [
           "id",
           "name",
-          "email"
+          "email",
+          "role"
         ],
         "title": "User Response Schema",
         "description": "Schema to use in the response field"
@@ -276,13 +300,21 @@
           "password": {
             "type": "string",
             "minLength": 8
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
           }
         },
         "required": [
           "id",
           "name",
           "email",
-          "password"
+          "password",
+          "role"
         ],
         "additionalProperties": false,
         "title": "User Schema",
@@ -302,12 +334,20 @@
           "password": {
             "type": "string",
             "minLength": 8
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
           }
         },
         "required": [
           "name",
           "email",
-          "password"
+          "password",
+          "role"
         ],
         "additionalProperties": false,
         "title": "User Request Schema",
@@ -328,12 +368,20 @@
             "type": "string",
             "format": "email",
             "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
           }
         },
         "required": [
           "id",
           "name",
-          "email"
+          "email",
+          "role"
         ],
         "additionalProperties": false,
         "title": "User Response Schema",
@@ -361,11 +409,19 @@
                   "password": {
                     "type": "string",
                     "minLength": 8
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "admin",
+                      "user"
+                    ]
                   }
                 },
                 "required": [
                   "email",
-                  "password"
+                  "password",
+                  "role"
                 ]
               }
             }
