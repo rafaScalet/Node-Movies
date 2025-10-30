@@ -34,7 +34,6 @@ z.globalRegistry.add(MovieRequestSchema, {
   description: 'Schema to pass a Movie in the "body" field',
 });
 
-
 z.globalRegistry.add(MovieResponseSchema, {
   id: "MovieResponse",
   title: "Movie Response Schema",
