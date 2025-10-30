@@ -5,7 +5,7 @@ import { signIn } from "@/services/auth/sign-in"
 
 export function AuthController(app: FastifyTypedInstance) {
   app.post(
-    "/login",
+    "/signIn",
     {
       schema: {
         body: UserRequestSchema.omit({ name: true }),
