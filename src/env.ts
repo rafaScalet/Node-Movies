@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["develop", "testing", "production"]).default("develop"),
@@ -9,10 +9,18 @@ const envSchema = z.object({
     .transform((data) => data.split(","))
     .default(["*"]),
   JWT_SECRET: z.string().default("jwt-secret"),
-})
+  DATABASE_URL: z.url().startsWith("file:").default("file:local.db"),
+});
 
-const env = envSchema.parse(process.env)
+const env = envSchema.parse(process.env);
 
-export const { NODE_ENV, APP_PORT, APP_HOST, CORS_ORIGIN, JWT_SECRET } = env
+export const {
+  NODE_ENV,
+  APP_PORT,
+  APP_HOST,
+  CORS_ORIGIN,
+  JWT_SECRET,
+  DATABASE_URL,
+} = env;
 
-export default env
+export default env;

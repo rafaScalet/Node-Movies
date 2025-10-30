@@ -6,9 +6,11 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "dev": "tsx watch --env-file=.env src/server.ts",
-    "start": "node --env-file=.env .",
-    "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')" 
+    "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
+    "start": "node --env-file=.env ."
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   "homepage": "https://github.com/rafaScalet/Node-Movies#readme",
   "devDependencies": {
     "@types/node": "^24.7.0",
+    "drizzle-kit": "^0.31.6",
     "pino-pretty": "^13.1.1",
     "tsup": "^8.5.0",
     "tsx": "^4.20.6",
@@ -35,7 +38,9 @@
     "@fastify/cors": "^11.1.0",
     "@fastify/jwt": "^10.0.0",
     "@fastify/swagger": "^9.5.2",
+    "@libsql/client": "^0.15.15",
     "@scalar/fastify-api-reference": "^1.37.0",
+    "drizzle-orm": "^0.44.7",
     "fastify": "^5.6.1",
     "fastify-type-provider-zod": "^6.0.0",
     "zod": "^4.1.12"
