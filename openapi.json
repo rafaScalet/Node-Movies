@@ -390,7 +390,7 @@
     }
   },
   "paths": {
-    "/login": {
+    "/signIn": {
       "post": {
         "tags": [
           "auth"
@@ -468,6 +468,56 @@
                 "schema": {
                   "title": "Error Response Schema",
                   "description": "Not Found",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signUp": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequestInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Ok Response Schema",
+                  "description": "Created",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OkResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error Response Schema",
+                  "description": "Conflict",
                   "allOf": [
                     {
                       "$ref": "#/components/schemas/ErrorResponse"

@@ -26,11 +26,11 @@ export async function singUp(
 
   const userAlreadyExits = users.find((data) => data.email === email)
 
-  if (!userAlreadyExits) {
+  if (  userAlreadyExits) {
     return res.code(409).send({
       error: "Conflict",
       message: "User with this email already exists!",
-      statusCode: 404,
+      statusCode: 409,
     })
   }
 
