@@ -46,7 +46,6 @@ export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: F
   movies.push(movie);
 
   return res.code(201).send({
-    value: movie,
     message: "Movie created successfully!",
     statusCode: 201,
   });

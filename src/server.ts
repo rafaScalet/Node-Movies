@@ -14,6 +14,7 @@ import {
 } from "fastify-type-provider-zod";
 import fastifyScalarUI from "@scalar/fastify-api-reference";
 import { AuthController } from "./controllers/auth";
+import { MoviesController } from "./controllers/movies";
 
 const dev = NODE_ENV === "develop";
 
@@ -35,7 +36,10 @@ await app.register(fastifySwagger, {
       description: "The Backend for Node Movies application",
       version: "1.0.0",
     },
-    tags: [{ name: "auth", description: "Authentication related end-points" }],
+    tags: [
+      { name: "auth", description: "Authentication related end-points" },
+      { name: "movies", description: "Movies related end-points" }
+    ],
     servers: [
       {
         url: "http://localhost:3333",
@@ -52,6 +56,8 @@ await app.register(fastifySwagger, {
 });
 
 await app.register(AuthController);
+
+await app.register(MoviesController);
 
 await app.register(fastifyScalarUI, { routePrefix: "/docs" });
 
