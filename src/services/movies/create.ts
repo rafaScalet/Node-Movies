@@ -9,7 +9,7 @@ const movies: Array<Movie> = [
     genres: ["Action", "Sci-Fi"],
     year: 1999,
     duration: 136,
-    age: "+18",
+    ageRating: "+18",
     poster: "link_poster.com",
     link: "link_filme.com"
   },
@@ -20,7 +20,7 @@ const movies: Array<Movie> = [
     genres: ["Adventure", "Comedy", "Fantasy"],
     year: 1985,
     duration: 114,
-    age: "+12",
+    ageRating: "+12",
     poster: "link_poster.com",
     link: "link_filme.com"
   },
@@ -31,17 +31,17 @@ const movies: Array<Movie> = [
     genres: ["Adventure", "Fantasy"],
     year: 2001,
     duration: 178,
-    age: "+12",
+    ageRating: "+12",
     poster: "link_poster.com",
     link: "link_filme.com"
   },
 ]
 
 export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: FastifyReply) {
-  const { title, description, genres, year, duration, age, poster, link } = req.body;
+  const { title, description, genres, year, duration, ageRating, poster, link } = req.body;
   const id = movies.length + 1;
 
-  const movie: Movie = { id, title, description, genres, year, duration, age, poster, link };
+  const movie: Movie = { id, title, description, genres, year, duration, ageRating, poster, link };
 
   movies.push(movie);
 

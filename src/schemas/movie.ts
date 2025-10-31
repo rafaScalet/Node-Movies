@@ -7,7 +7,7 @@ export const MovieSchema = z.object({
   genres: z.array(z.string()),
   year: z.number().int().min(1895).max(9999),
   duration: z.number().int().min(1).max(26000),
-  age: z.string(),
+  ageRating: z.string(),
   poster: z.url(),
   link: z.url()
 })
