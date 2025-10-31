@@ -19,13 +19,13 @@ export function AuthController(app: FastifyTypedInstance) {
       },
     },
     signIn
-  )
+  );
 
   app.post(
     "/signUp",
-    { 
+    {
       schema: {
-        body: UserRequestSchema, 
+        body: UserRequestSchema,
         tags: ["auth"],
         response: {
           201: OkResponseSchema.describe("Created"),
@@ -34,6 +34,6 @@ export function AuthController(app: FastifyTypedInstance) {
       },
     },
     singUp
-  )
+  );
 
 }
