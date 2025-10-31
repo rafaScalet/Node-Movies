@@ -224,14 +224,14 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -243,9 +243,9 @@
           "genres",
           "year",
           "duration",
-          "age",
-          "poster",
-          "link"
+          "ageRating",
+          "posterLink",
+          "movieLink"
         ],
         "title": "Movie Response Schema",
         "description": "Schema to use in the response field"
@@ -276,14 +276,14 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -294,9 +294,9 @@
           "genres",
           "year",
           "duration",
-          "age",
-          "poster",
-          "link"
+          "ageRating",
+          "posterLink",
+          "movieLink"
         ],
         "title": "Movie Request Schema",
         "description": "Schema to pass a Movie in the \"body\" field"
@@ -332,14 +332,14 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -351,9 +351,9 @@
           "genres",
           "year",
           "duration",
-          "age",
-          "poster",
-          "link"
+          "ageRating",
+          "posterLink",
+          "movieLink"
         ],
         "title": "Movie Response Schema",
         "description": "Schema to use in the response field"
@@ -583,14 +583,14 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -602,9 +602,9 @@
           "genres",
           "year",
           "duration",
-          "age",
-          "poster",
-          "link"
+          "ageRating",
+          "posterLink",
+          "movieLink"
         ],
         "additionalProperties": false,
         "title": "Movie Response Schema",
@@ -636,14 +636,14 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -654,9 +654,9 @@
           "genres",
           "year",
           "duration",
-          "age",
-          "poster",
-          "link"
+          "ageRating",
+          "posterLink",
+          "movieLink"
         ],
         "additionalProperties": false,
         "title": "Movie Request Schema",
@@ -693,14 +693,14 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -712,9 +712,9 @@
           "genres",
           "year",
           "duration",
-          "age",
-          "poster",
-          "link"
+          "ageRating",
+          "posterLink",
+          "movieLink"
         ],
         "additionalProperties": false,
         "title": "Movie Response Schema",
@@ -899,6 +899,22 @@
                     "message"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error Response Schema",
+                  "description": "Conflict",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  ]
                 }
               }
             }
