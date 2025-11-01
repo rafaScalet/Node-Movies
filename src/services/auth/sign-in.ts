@@ -1,6 +1,7 @@
 import { db } from "@/db/connections";
 import { UserRequest } from "@/schemas/user";
 import { FastifyReply, FastifyRequest } from "fastify";
+import argon2 from "argon2";
 
 export async function signIn(
   req: FastifyRequest<{ Body: UserRequest }>,
@@ -21,7 +22,9 @@ export async function signIn(
       });
     }
 
-    if (user.password !== password) {
+    const passwordIsCorrect = await argon2.verify(user.password, password);
+
+    if (!passwordIsCorrect) {
       return res.code(401).send({
         error: "Unauthorized",
         message: "Invalid user password!",
