@@ -9,7 +9,12 @@ await seed(conn, schema, { seed: Math.floor(Math.random() * 10) }).refine(
     users: {
       columns: {
         role: funcs.valuesFromArray({ values: ["admin", "normal"] }),
+        id: funcs.uuid(),
       },
     },
   }),
 );
+
+for (const [_tableName, tableData] of Object.entries(schema)) {
+  console.log(await conn.select().from(tableData));
+}

@@ -6,12 +6,13 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
+    "db:drop": "tsx --env-file .env ./src/db/drop.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "predb:migrate": "pnpm db:generate",
     "db:seed": "tsx --env-file .env ./src/db/seed.ts",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
+    "predb:migrate": "pnpm db:generate",
     "start": "node --env-file=.env .",
     "typecheck": "tsc -b",
     "typecheck:watch": "tsc --watch"
