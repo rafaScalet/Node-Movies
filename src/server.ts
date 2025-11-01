@@ -1,4 +1,10 @@
-import env, { APP_PORT, APP_HOST, NODE_ENV, CORS_ORIGIN, JWT_SECRET } from "@/env";
+import env, {
+  APP_PORT,
+  APP_HOST,
+  NODE_ENV,
+  CORS_ORIGIN,
+  JWT_SECRET,
+} from "@/env";
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -38,7 +44,7 @@ await app.register(fastifySwagger, {
     },
     tags: [
       { name: "auth", description: "Authentication related end-points" },
-      { name: "movies", description: "Movies related end-points" }
+      { name: "movies", description: "Movies related end-points" },
     ],
     servers: [
       {

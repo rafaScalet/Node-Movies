@@ -2,6 +2,7 @@ import { UserRequest } from "@/schemas/user";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { db } from "@/db/connections";
 import { schema } from "@/db/schemas";
+import { randomUUID } from "node:crypto";
 
 export async function singUp(
   req: FastifyRequest<{ Body: UserRequest }>,
@@ -9,6 +10,8 @@ export async function singUp(
 ) {
   try {
     const { email, password, name, role } = req.body;
+
+    const id = randomUUID();
 
     const userAlreadyExits = await db.query.users.findFirst({
       where: (data, { eq }) => eq(data.email, email),
@@ -24,7 +27,7 @@ export async function singUp(
 
     const createdUser = await db
       .insert(schema.users)
-      .values({ email, password, name, role })
+      .values({ id, email, password, name, role })
       .returning();
 
     const token = req.server.jwt.sign({ email, name, role });

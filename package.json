@@ -8,11 +8,13 @@
     "build": "tsup",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "predb:migrate": "pnpm db:generate",
     "db:seed": "tsx --env-file .env ./src/db/seed.ts",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
     "start": "node --env-file=.env .",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "typecheck:watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
