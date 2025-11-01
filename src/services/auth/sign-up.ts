@@ -8,10 +8,10 @@ export async function singUp(
   res: FastifyReply,
 ) {
   try {
-    const newUser = req.body;
+    const { email, password, name, role } = req.body;
 
     const userAlreadyExits = await db.query.users.findFirst({
-      where: (data, { eq }) => eq(data.email, newUser.email),
+      where: (data, { eq }) => eq(data.email, email),
     });
 
     if (userAlreadyExits) {
@@ -22,10 +22,15 @@ export async function singUp(
       });
     }
 
-    const createdUser = await db.insert(schema.users).values(newUser);
+    const createdUser = await db
+      .insert(schema.users)
+      .values({ email, password, name, role })
+      .returning();
+
+    const token = req.server.jwt.sign({ email, name, role });
 
     return res.code(201).send({
-      value: { createdUser },
+      value: { token, ...createdUser[0] },
       message: "User created successfully",
       statusCode: 201,
     });
