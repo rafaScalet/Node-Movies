@@ -11,6 +11,6 @@ export const users = sqliteTable(
     role: text("roles", { enum: ["admin", "user"] }).notNull(),
   },
   (table) => [
-    check("roles_check_one", sql`${table.role} IN ('admin', 'normal')`),
+    check("roles_check_one", sql`${table.role} IN ('admin', 'user')`),
   ],
 );

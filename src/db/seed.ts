@@ -11,7 +11,7 @@ await seed(conn, schema, { seed: Math.floor(Math.random() * 10) }).refine(
   (funcs) => ({
     users: {
       columns: {
-        role: funcs.valuesFromArray({ values: ["admin", "normal"] }),
+        role: funcs.valuesFromArray({ values: ["admin", "user"] }),
         id: funcs.uuid(),
         password: funcs.default({ defaultValue: hash }),
       },
