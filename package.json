@@ -6,13 +6,16 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
+    "db:drop": "tsx --env-file .env ./src/db/drop.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx --env-file .env ./src/db/seed.ts",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
+    "predb:migrate": "pnpm db:generate",
     "start": "node --env-file=.env .",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "typecheck:watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -42,6 +45,7 @@
     "@fastify/swagger": "^9.5.2",
     "@libsql/client": "^0.15.15",
     "@scalar/fastify-api-reference": "^1.37.0",
+    "argon2": "^0.44.0",
     "drizzle-orm": "^0.44.7",
     "drizzle-seed": "^0.3.1",
     "fastify": "^5.6.1",
