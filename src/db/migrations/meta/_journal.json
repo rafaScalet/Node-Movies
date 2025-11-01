@@ -15,6 +15,20 @@
       "when": 1761856599689,
       "tag": "0001_narrow_cerise",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1761963974299,
+      "tag": "0002_shiny_scarlet_spider",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1761965195694,
+      "tag": "0003_oval_the_initiative",
+      "breakpoints": true
     }
   ]
 }

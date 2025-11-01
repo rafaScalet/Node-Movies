@@ -224,7 +224,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -243,7 +243,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -276,7 +276,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -294,7 +294,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -332,7 +332,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -351,7 +351,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -583,7 +583,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -602,7 +602,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -636,7 +636,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -654,7 +654,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -693,7 +693,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -712,7 +712,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
