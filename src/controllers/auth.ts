@@ -1,12 +1,12 @@
-import { FastifyTypedInstance } from "@/config"
-import { ErrorResponseSchema, OkResponseSchema } from "@/schemas/response"
-import { UserRequestSchema } from "@/schemas/user"
-import { signIn } from "@/services/auth/sign-in"
-import { singUp } from "@/services/auth/sign-up"
+import { FastifyTypedInstance } from "@/config";
+import { ErrorResponseSchema, OkResponseSchema } from "@/schemas/response";
+import { UserRequestSchema } from "@/schemas/user";
+import { signIn } from "@/services/auth/sign-in";
+import { singUp } from "@/services/auth/sign-up";
 
 export function AuthController(app: FastifyTypedInstance) {
   app.post(
-    "/signIn",
+    "/sign-in",
     {
       schema: {
         body: UserRequestSchema.omit({ name: true }),
@@ -18,14 +18,14 @@ export function AuthController(app: FastifyTypedInstance) {
         },
       },
     },
-    signIn
-  )
+    signIn,
+  );
 
   app.post(
-    "/signUp",
-    { 
+    "/sign-up",
+    {
       schema: {
-        body: UserRequestSchema, 
+        body: UserRequestSchema,
         tags: ["auth"],
         response: {
           201: OkResponseSchema.describe("Created"),
@@ -33,7 +33,6 @@ export function AuthController(app: FastifyTypedInstance) {
         },
       },
     },
-    singUp
-  )
-
+    singUp,
+  );
 }

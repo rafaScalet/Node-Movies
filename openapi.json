@@ -741,7 +741,7 @@
     }
   },
   "paths": {
-    "/signIn": {
+    "/sign-in": {
       "post": {
         "tags": [
           "auth"
@@ -831,7 +831,7 @@
         }
       }
     },
-    "/signUp": {
+    "/sign-up": {
       "post": {
         "tags": [
           "auth"
