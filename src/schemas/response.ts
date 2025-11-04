@@ -4,8 +4,8 @@ export const ResponseSchema = z.object({
   statusCode: z.number().min(200).max(505),
   message: z.string(),
   error: z.string(),
-  value: z.object({ token: z.string().optional() })
-})
+  value: z.record(z.string(), z.string().or(z.number())),
+});
 
 export const OkResponseSchema = ResponseSchema.omit({ error: true });
 
@@ -23,13 +23,11 @@ z.globalRegistry.add(ResponseSchema, {
   description: "Response Related Schema",
 });
 
-
 z.globalRegistry.add(OkResponseSchema, {
   id: "OkResponse",
   title: "Ok Response Schema",
   description: "Ok Related Schema",
 });
-
 
 z.globalRegistry.add(ErrorResponseSchema, {
   id: "ErrorResponse",

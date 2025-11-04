@@ -23,10 +23,15 @@
           },
           "value": {
             "type": "object",
-            "properties": {
-              "token": {
-                "type": "string"
-              }
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
             }
           }
         },
@@ -52,10 +57,15 @@
           },
           "value": {
             "type": "object",
-            "properties": {
-              "token": {
-                "type": "string"
-              }
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
             }
           }
         },
@@ -94,9 +104,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "name": {
             "type": "string"
@@ -164,9 +174,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "name": {
             "type": "string"
@@ -224,7 +234,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -243,7 +253,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -276,7 +286,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -294,7 +304,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -332,7 +342,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -351,7 +361,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -374,12 +384,16 @@
           },
           "value": {
             "type": "object",
-            "properties": {
-              "token": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
           }
         },
         "required": [
@@ -405,12 +419,16 @@
           },
           "value": {
             "type": "object",
-            "properties": {
-              "token": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
           }
         },
         "required": [
@@ -450,9 +468,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "name": {
             "type": "string"
@@ -522,9 +540,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "name": {
             "type": "string"
@@ -583,7 +601,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -602,7 +620,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -636,7 +654,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -654,7 +672,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -693,7 +711,7 @@
             "minimum": 1,
             "maximum": 26000
           },
-          "age": {
+          "ageRating": {
             "type": "string"
           },
           "poster": {
@@ -712,7 +730,7 @@
           "genres",
           "year",
           "duration",
-          "age",
+          "ageRating",
           "poster",
           "link"
         ],
@@ -723,7 +741,7 @@
     }
   },
   "paths": {
-    "/signIn": {
+    "/sign-in": {
       "post": {
         "tags": [
           "auth"
@@ -813,7 +831,7 @@
         }
       }
     },
-    "/signUp": {
+    "/sign-up": {
       "post": {
         "tags": [
           "auth"
