@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const MovieSchema = z.object({
-  id: z.int(),
+  id: z.uuid(),
   title: z.string().min(1),
   description: z.string(),
   genres: z.array(z.string()),

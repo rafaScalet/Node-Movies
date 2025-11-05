@@ -2,7 +2,7 @@ import { Movie } from "@/schemas/movie";
 
 const movies: Array<Movie> = [
   {
-    id: 1,
+    id: "1",
     title: "The Matrix",
     description: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
     genres: ["Action", "Sci-Fi"],
