@@ -1,19 +1,12 @@
-import { Movie } from "@/schemas/movie";
+import { db } from "@/db/connections";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-const movies: Array<Movie> = [
-  {
-    id: "1",
-    title: "The Matrix",
-    description: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
-    genres: ["Action", "Sci-Fi"],
-    year: 1999,
-    duration: 136,
-    ageRating: "+18",
-    posterLink: "link_poster.com",
-    movieLink: "link_filme.com"
-  },
-]
+export async function list(_req: FastifyRequest, res: FastifyReply) {
+  const moviesList = await db.query.movies.findMany();
 
-export async function list() {
-  return movies;
+  res.code(200).send({
+    value: moviesList,
+    message: "Movies retrieved successfully!",
+    statusCode: 200,
+  });
 }
