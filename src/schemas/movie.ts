@@ -5,9 +5,9 @@ export const MovieSchema = z.object({
   title: z.string().min(1),
   description: z.string(),
   genres: z.array(z.string()),
-  year: z.number().int().min(1895).max(9999),
+  year: z.number().int().min(1878).max(new Date().getFullYear()),
   duration: z.number().int().min(1).max(26000),
-  ageRating: z.string(),
+  ageRating: z.enum(["L", "10", "12", "14", "16", "18"]),
   posterLink: z.url(),
   movieLink: z.url()
 })
