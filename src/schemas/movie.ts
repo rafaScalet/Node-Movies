@@ -8,8 +8,8 @@ export const MovieSchema = z.object({
   year: z.number().int().min(1895).max(9999),
   duration: z.number().int().min(1).max(26000),
   ageRating: z.string(),
-  poster: z.url(),
-  link: z.url()
+  posterLink: z.url(),
+  movieLink: z.url()
 })
 
 export const MovieRequestSchema = MovieSchema.omit({ id: true });

@@ -10,38 +10,16 @@ const movies: Array<Movie> = [
     year: 1999,
     duration: 136,
     ageRating: "+18",
-    poster: "link_poster.com",
-    link: "link_filme.com"
-  },
-  {
-    id: 2,
-    title: "Goonies",
-    description: "A group of young misfits called The Goonies discover an ancient map and embark on a quest to find a legendary pirate's long-lost treasure.",
-    genres: ["Adventure", "Comedy", "Fantasy"],
-    year: 1985,
-    duration: 114,
-    ageRating: "+12",
-    poster: "link_poster.com",
-    link: "link_filme.com"
-  },
-  {
-    id: 3,
-    title: "The Lord of the Rings: The Fellowship of the Ring",
-    description: "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
-    genres: ["Adventure", "Fantasy"],
-    year: 2001,
-    duration: 178,
-    ageRating: "+12",
-    poster: "link_poster.com",
-    link: "link_filme.com"
+    posterLink: "link_poster.com",
+    movieLink: "link_filme.com"
   },
 ]
 
 export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: FastifyReply) {
-  const { title, description, genres, year, duration, ageRating, poster, link } = req.body;
+  const { title, description, genres, year, duration, ageRating, posterLink, movieLink } = req.body;
   const id = movies.length + 1;
 
-  const movie: Movie = { id, title, description, genres, year, duration, ageRating, poster, link };
+  const movie: Movie = { id, title, description, genres, year, duration, ageRating, posterLink, movieLink };
 
   movies.push(movie);
 

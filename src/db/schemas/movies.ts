@@ -9,8 +9,8 @@ export const movies = sqliteTable(
     genres: text("genres", { mode: "json" }).notNull().$type<string[]>(),
     year: int("year").notNull(),
     duration: int("duration").notNull(),
-    ageRating: text("ageRating").notNull(),
-    poster: text("poster").notNull(),
-    movie: text("movie").notNull()
+    ageRating: text("age_rating").notNull(),
+    posterLink: text("poster_link").notNull(),
+    movieLink: text("movie_link").notNull()
   }
 );
