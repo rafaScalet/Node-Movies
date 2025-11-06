@@ -207,9 +207,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "title": {
             "type": "string",
@@ -226,8 +226,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1895,
-            "maximum": 9999
+            "minimum": 1878,
+            "maximum": 2025
           },
           "duration": {
             "type": "integer",
@@ -235,13 +235,21 @@
             "maximum": 26000
           },
           "ageRating": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "10",
+              "12",
+              "14",
+              "16",
+              "18",
+              "L"
+            ]
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -254,8 +262,8 @@
           "year",
           "duration",
           "ageRating",
-          "poster",
-          "link"
+          "posterLink",
+          "movieLink"
         ],
         "title": "Movie Response Schema",
         "description": "Schema to use in the response field"
@@ -278,8 +286,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1895,
-            "maximum": 9999
+            "minimum": 1878,
+            "maximum": 2025
           },
           "duration": {
             "type": "integer",
@@ -287,13 +295,21 @@
             "maximum": 26000
           },
           "ageRating": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "10",
+              "12",
+              "14",
+              "16",
+              "18",
+              "L"
+            ]
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -305,8 +321,8 @@
           "year",
           "duration",
           "ageRating",
-          "poster",
-          "link"
+          "posterLink",
+          "movieLink"
         ],
         "title": "Movie Request Schema",
         "description": "Schema to pass a Movie in the \"body\" field"
@@ -315,9 +331,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "title": {
             "type": "string",
@@ -334,8 +350,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1895,
-            "maximum": 9999
+            "minimum": 1878,
+            "maximum": 2025
           },
           "duration": {
             "type": "integer",
@@ -343,13 +359,21 @@
             "maximum": 26000
           },
           "ageRating": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "10",
+              "12",
+              "14",
+              "16",
+              "18",
+              "L"
+            ]
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -362,8 +386,8 @@
           "year",
           "duration",
           "ageRating",
-          "poster",
-          "link"
+          "posterLink",
+          "movieLink"
         ],
         "title": "Movie Response Schema",
         "description": "Schema to use in the response field"
@@ -574,9 +598,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "title": {
             "type": "string",
@@ -593,8 +617,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1895,
-            "maximum": 9999
+            "minimum": 1878,
+            "maximum": 2025
           },
           "duration": {
             "type": "integer",
@@ -602,13 +626,21 @@
             "maximum": 26000
           },
           "ageRating": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "10",
+              "12",
+              "14",
+              "16",
+              "18",
+              "L"
+            ]
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -621,8 +653,8 @@
           "year",
           "duration",
           "ageRating",
-          "poster",
-          "link"
+          "posterLink",
+          "movieLink"
         ],
         "additionalProperties": false,
         "title": "Movie Response Schema",
@@ -646,8 +678,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1895,
-            "maximum": 9999
+            "minimum": 1878,
+            "maximum": 2025
           },
           "duration": {
             "type": "integer",
@@ -655,13 +687,21 @@
             "maximum": 26000
           },
           "ageRating": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "10",
+              "12",
+              "14",
+              "16",
+              "18",
+              "L"
+            ]
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -673,8 +713,8 @@
           "year",
           "duration",
           "ageRating",
-          "poster",
-          "link"
+          "posterLink",
+          "movieLink"
         ],
         "additionalProperties": false,
         "title": "Movie Request Schema",
@@ -684,9 +724,9 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
           },
           "title": {
             "type": "string",
@@ -703,8 +743,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1895,
-            "maximum": 9999
+            "minimum": 1878,
+            "maximum": 2025
           },
           "duration": {
             "type": "integer",
@@ -712,13 +752,21 @@
             "maximum": 26000
           },
           "ageRating": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "10",
+              "12",
+              "14",
+              "16",
+              "18",
+              "L"
+            ]
           },
-          "poster": {
+          "posterLink": {
             "type": "string",
             "format": "uri"
           },
-          "link": {
+          "movieLink": {
             "type": "string",
             "format": "uri"
           }
@@ -731,8 +779,8 @@
           "year",
           "duration",
           "ageRating",
-          "poster",
-          "link"
+          "posterLink",
+          "movieLink"
         ],
         "additionalProperties": false,
         "title": "Movie Response Schema",
@@ -917,6 +965,22 @@
                     "message"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Error Response Schema",
+                  "description": "Conflict",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  ]
                 }
               }
             }

@@ -16,6 +16,13 @@ await seed(conn, schema, { seed: Math.floor(Math.random() * 10) }).refine(
         password: funcs.default({ defaultValue: hash }),
       },
     },
+    movies: {
+      columns: {
+        year: funcs.int({ minValue: 1990, maxValue: new Date().getFullYear() }),
+        duration: funcs.int({ minValue: 30, maxValue: 26000 }),
+        ageRating: funcs.valuesFromArray({ values: ["L", "10", "12", "14", "16", "18"] }),
+      },
+    },
   }),
 );
 
