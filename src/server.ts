@@ -89,5 +89,5 @@ app.listen({ port, host }, (err) => {
     process.exit(1);
   }
 
-  app.log.info({ env }, "HTTP Server Running");
+  if (dev) app.log.info({ env }, "HTTP Server Running");
 });

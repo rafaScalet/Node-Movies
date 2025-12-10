@@ -1,0 +1,6 @@
+node_modules
+.git
+local.bd
+dist
+.env
+openapi.json
