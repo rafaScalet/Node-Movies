@@ -2,7 +2,7 @@ import { FastifyTypedInstance } from "@/config";
 import { ErrorResponseSchema, OkResponseSchema } from "@/schemas/response";
 import { UserRequestSchema } from "@/schemas/user";
 import { signIn } from "@/services/auth/sign-in";
-import { singUp } from "@/services/auth/sign-up";
+import { signUp } from "@/services/auth/sign-up";
 
 export function AuthController(app: FastifyTypedInstance) {
   app.post(
@@ -33,6 +33,6 @@ export function AuthController(app: FastifyTypedInstance) {
         },
       },
     },
-    singUp,
+    signUp,
   );
 }

@@ -2,14 +2,27 @@ import { db } from "@/db/connections";
 import { schema } from "@/db/schemas";
 import { MovieRequest } from "@/schemas/movie";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { randomUUID } from "node:crypto";
+import { eq } from "drizzle-orm";
 
-export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: FastifyReply) {
+export async function update(req: FastifyRequest<{ Params: { id: string }; Body: MovieRequest }>, res: FastifyReply) {
   try {
+    const { id } = req.params;
     const { title, description, genres, year, duration, ageRating, posterLink, movieLink } = req.body;
 
+    const existingMovie = await db.query.movies.findFirst({
+      where: (data, { eq }) => eq(data.id, id),
+    });
+
+    if (!existingMovie) {
+      return res.code(404).send({
+        error: "Not Found",
+        message: "Movie not found!",
+        statusCode: 404,
+      });
+    }
+
     const movieAlreadyExists = await db.query.movies.findFirst({
-      where: (data, { eq }) => eq(data.title, title),
+      where: (data, { eq, and, ne }) => and(eq(data.title, title), ne(data.id, id)),
     });
 
     if (movieAlreadyExists) {
@@ -20,10 +33,7 @@ export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: F
       });
     }
 
-    const id = randomUUID();
-
-    await db.insert(schema.movies).values({
-      id,
+    await db.update(schema.movies).set({
       title,
       description,
       genres,
@@ -32,11 +42,11 @@ export async function create(req: FastifyRequest<{ Body: MovieRequest }>, res: F
       ageRating,
       posterLink,
       movieLink
-    });
+    }).where(eq(schema.movies.id, id));
 
-    return res.code(201).send({
-      message: "Movie created successfully!",
-      statusCode: 201,
+    return res.code(200).send({
+      message: "Movie updated successfully!",
+      statusCode: 200,
     });
   } catch (error) {
     res.code(500).send(error);
