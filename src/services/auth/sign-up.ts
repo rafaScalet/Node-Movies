@@ -5,10 +5,7 @@ import { schema } from "@/db/schemas";
 import { randomUUID } from "node:crypto";
 import argon2 from "argon2";
 
-export async function singUp(
-  req: FastifyRequest<{ Body: UserRequest }>,
-  res: FastifyReply,
-) {
+export async function signUp(req: FastifyRequest<{ Body: UserRequest }>, res: FastifyReply) {
   try {
     const { email, password, name, role } = req.body;
 
@@ -41,6 +38,6 @@ export async function singUp(
       statusCode: 201,
     });
   } catch (error) {
-    res.code(505).send(error);
+    res.code(500).send(error);
   }
 }

@@ -21,6 +21,7 @@ import {
 import fastifyScalarUI from "@scalar/fastify-api-reference";
 import { AuthController } from "./controllers/auth";
 import { MoviesController } from "./controllers/movies";
+import { ensureAdminUser } from "@/db/ensure-admin";
 
 const dev = NODE_ENV === "develop";
 
@@ -31,7 +32,10 @@ const app = fastify({
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-await app.register(fastifyCors, { origin: CORS_ORIGIN });
+await app.register(fastifyCors, { 
+  origin: CORS_ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+});
 
 await app.register(jwt, { secret: JWT_SECRET });
 
@@ -66,6 +70,8 @@ await app.register(AuthController);
 await app.register(MoviesController);
 
 await app.register(fastifyScalarUI, { routePrefix: "/docs" });
+
+await ensureAdminUser();
 
 await app.ready();
 

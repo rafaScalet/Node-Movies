@@ -3,10 +3,7 @@ import { UserRequest } from "@/schemas/user";
 import { FastifyReply, FastifyRequest } from "fastify";
 import argon2 from "argon2";
 
-export async function signIn(
-  req: FastifyRequest<{ Body: UserRequest }>,
-  res: FastifyReply,
-) {
+export async function signIn(req: FastifyRequest<{ Body: UserRequest }>, res: FastifyReply) {
   try {
     const { email, password, name, role } = req.body;
 
@@ -32,7 +29,7 @@ export async function signIn(
       });
     }
 
-    const token = req.server.jwt.sign({ name, email, role });
+    const token = req.server.jwt.sign({ name: user.name, email: user.email, role: user.role });
 
     return res.code(200).send({
       value: { token },
@@ -40,6 +37,6 @@ export async function signIn(
       statusCode: 200,
     });
   } catch (error) {
-    res.code(505).send(error);
+    res.code(500).send(error);
   }
 }
