@@ -13,7 +13,7 @@
     "dev": "tsx watch --env-file=.env src/server.ts",
     "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
     "predb:migrate": "pnpm db:generate",
-    "start": "node --env-file=.env .",
+    "start": "NODE_ENV=production node dist",
     "typecheck": "tsc -b",
     "typecheck:watch": "tsc --watch"
   },
