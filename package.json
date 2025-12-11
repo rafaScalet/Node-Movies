@@ -9,7 +9,7 @@
     "db:drop": "tsx --env-file .env ./src/db/drop.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:seed": "tsx --env-file .env ./src/db/seed.ts",
+    "db:seed": "tsx ./src/db/seed.ts",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "jwt": "echo JWT_SECRET=$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')",
     "predb:migrate": "pnpm db:generate",

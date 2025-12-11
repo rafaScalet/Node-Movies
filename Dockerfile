@@ -18,6 +18,7 @@ WORKDIR ${WORKDIR}
 COPY --from=deps ${WORKDIR}/node_modules ${WORKDIR}/node_modules
 COPY . ${WORKDIR}/
 RUN ["pnpm", "run", "db:migrate"]
+RUN ["pnpm", "run", "db:seed"]
 
 FROM base AS build
 ARG WORKDIR

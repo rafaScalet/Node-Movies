@@ -3,3 +3,5 @@ services:
     container_name: node-movies
     image: node-movies
     build: .
+    ports:
+      - ${APP_PORT:-3333}:3333
