@@ -1,0 +1,69 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1761852858823,
+      "tag": "0000_sweet_rafael_vega",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1761856599689,
+      "tag": "0001_narrow_cerise",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1761963974299,
+      "tag": "0002_shiny_scarlet_spider",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1761965195694,
+      "tag": "0003_oval_the_initiative",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1762007234929,
+      "tag": "0004_nasty_domino",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1762292385305,
+      "tag": "0005_breezy_trauma",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1762300938405,
+      "tag": "0006_lively_peter_parker",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1762301085958,
+      "tag": "0007_yielding_speed_demon",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1762303181949,
+      "tag": "0008_conscious_network",
+      "breakpoints": true
+    }
+  ]
+}

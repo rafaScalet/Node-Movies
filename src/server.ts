@@ -1,16 +1,43 @@
+import env, {
+  APP_PORT,
+  APP_HOST,
+  NODE_ENV,
+  CORS_ORIGIN,
+  JWT_SECRET,
+} from "@/env";
 import { fastify } from "fastify";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fastifyCors } from "@fastify/cors";
 import { fastifySwagger } from "@fastify/swagger";
+import jwt from "@fastify/jwt";
+import {
+  validatorCompiler,
+  serializerCompiler,
+  jsonSchemaTransform,
+  jsonSchemaTransformObject,
+  ZodTypeProvider,
+} from "fastify-type-provider-zod";
+import fastifyScalarUI from "@scalar/fastify-api-reference";
+import { AuthController } from "./controllers/auth";
+import { MoviesController } from "./controllers/movies";
+import { ensureAdminUser } from "@/db/ensure-admin";
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = NODE_ENV === "develop";
 
 const app = fastify({
   logger: dev ? { transport: { target: "pino-pretty" } } : true,
+}).withTypeProvider<ZodTypeProvider>();
+
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
+
+await app.register(fastifyCors, { 
+  origin: CORS_ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 });
 
-await app.register(fastifyCors, { origin: "*" });
+await app.register(jwt, { secret: JWT_SECRET });
 
 await app.register(fastifySwagger, {
   openapi: {
@@ -19,7 +46,10 @@ await app.register(fastifySwagger, {
       description: "The Backend for Node Movies application",
       version: "1.0.0",
     },
-    tags: [],
+    tags: [
+      { name: "auth", description: "Authentication related end-points" },
+      { name: "movies", description: "Movies related end-points" },
+    ],
     servers: [
       {
         url: "http://localhost:3333",
@@ -31,7 +61,17 @@ await app.register(fastifySwagger, {
       description: "Find more info here",
     },
   },
+  transform: jsonSchemaTransform,
+  transformObject: jsonSchemaTransformObject,
 });
+
+await app.register(AuthController);
+
+await app.register(MoviesController);
+
+await app.register(fastifyScalarUI, { routePrefix: "/docs" });
+
+await ensureAdminUser();
 
 await app.ready();
 
@@ -44,10 +84,16 @@ if (dev) {
   });
 }
 
-app.listen({ port: 3333, host: "0.0.0.0" }, (err) => {
+const port = APP_PORT;
+const host = APP_HOST;
+
+app.listen({ port, host }, (err) => {
   console.clear();
 
   if (err) {
     app.log.error(err);
+    process.exit(1);
   }
+
+  if (dev) app.log.info({ env }, "HTTP Server Running");
 });
