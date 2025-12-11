@@ -12,6 +12,13 @@ WORKDIR ${WORKDIR}
 COPY ./pnpm-lock.yaml ./package.json ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store ["pnpm", "install", "--frozen-lockfile"]
 
+FROM base AS db
+ARG WORKDIR
+WORKDIR ${WORKDIR}
+COPY --from=deps ${WORKDIR}/node_modules ${WORKDIR}/node_modules
+COPY . ${WORKDIR}/
+RUN ["pnpm", "run", "db:migrate"]
+
 FROM base AS build
 ARG WORKDIR
 WORKDIR ${WORKDIR}
@@ -24,4 +31,5 @@ ARG WORKDIR
 WORKDIR ${WORKDIR}
 COPY --from=deps ${WORKDIR}/node_modules ${WORKDIR}/node_modules
 COPY --from=build ${WORKDIR}/dist ${WORKDIR}/dist
+COPY --from=db ${WORKDIR}/local.db ${WORKDIR}/local.db
 CMD ["node", "dist"]
