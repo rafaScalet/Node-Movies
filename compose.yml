@@ -3,4 +3,3 @@ services:
     container_name: node-movies
     image: node-movies
     build: .
-    env_file: .env
